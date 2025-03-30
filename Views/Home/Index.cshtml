@@ -1,0 +1,396 @@
+﻿    <div class="section1">
+        <video autoplay loop muted plays-inline class="background-clip">
+        <source src="videos/background/background-video.mp4" type="video/mp4"">
+        </video>
+
+        <div class="content1">
+            <h1 style="font-size:110px;font-weight:900;">Travel to Most Iconic Places of Maharashtra </h1>
+        </div>
+    </div>
+    <!-- middle search section -->
+    <div class="search-city">
+        <div class="search-2">
+            <h3>
+                Search by City/Place:
+                <input type="search" id="searchInput" list="suggestions" placeholder="Try searching" class="searchbox" autocomplete="on">
+            </h3>
+            <datalist id="suggestions">
+                <option value="Karjat-Matheran"></option>
+                <option value="Mumbai"></option>
+                <option value="Pune"></option>
+                <option value="Nashik"></option>
+                <option value="Ajanta Caves"></option>
+                <option value="Ellora Caves"></option>
+                <option value="Chhatrapati Sambhaji Nagar"></option>
+                <option value="Mahabaleshwar"></option>
+                <option value="Lonavala"></option>
+                <option value="Khandala"></option>
+                <option value="Elephanta Caves"></option>
+                <option value="Chhatrapati Shivaji Maharaj Terminus"></option>
+                <option value="Western Ghats"></option>
+            </datalist>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </div>
+
+    <script>
+                document.getElementById('searchInput').addEventListener('input', function() {
+            const searchQuery = this.value.toLowerCase();
+            const suggestions = document.getElementById('suggestions').options;
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = ''; // Clear previous results
+
+            if (searchQuery.length > 0) {
+                for (let i = 0; i < suggestions.length; i++) {
+                    if (suggestions[i].value.toLowerCase().includes(searchQuery)) {
+                        const resultItem = document.createElement('div');
+                        resultItem.textContent = suggestions[i].value;
+                        resultItem.addEventListener('click', function() {
+                            // Navigate to the corresponding page
+                            window.location.href = getPageUrl(suggestions[i].value);
+                        });
+                        searchResults.appendChild(resultItem);
+                    }
+                }
+                searchResults.style.display = 'block'; // Show results
+            } else {
+                searchResults.style.display = 'none'; // Hide results if no input
+            }
+        });
+
+        function getPageUrl(place) {
+            // Map place names to their corresponding URLs
+            const placeToUrl = {
+                'Karjat-Matheran': 'places-detailed/karjat.html',
+                'Mumbai': 'places-detailed/mumbai.html',
+                'Pune': 'places-detailed/pune.html',
+                'Nashik': 'places-detailed/nashik.html',
+                'Ajanta Caves': 'places-detailed/ajanta.html',
+                'Ellora Caves': 'places-detailed/ellora.html',
+                'Chhatrapati Sambhaji Nagar': 'places-detailed/chhatrapati-sambhaji-nagar.html',
+                'Mahabaleshwar': 'places-detailed/mahabaleshwar.html',
+                'Lonavala': 'places-detailed/lonavala.html',
+                'Khandala': 'places-detailed/khandala.html',
+                'Elephanta Caves': 'places-detailed/elephanta.html',
+                'Chhatrapati Shivaji Maharaj Terminus': 'places-detailed/csmt.html',
+                'Western Ghats': 'blogs/westernghats.html'
+            };
+            return placeToUrl[place] || '#'; // Default to '#' if no match found
+        }
+    </script>
+
+    <div class="places-head">
+        <h1>Popular Places To Travel In Maharashtra..</h1>
+    </div>
+
+    <div class="places-sec" id="places-sec">
+        <div class="places1">
+          
+            <!-- Karjat/Matheran -->
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places/matheran.jpg" alt="Karjat/Matheran" onclick="openModal(this, 'places-detailed/karjat.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Karjat/Matheran</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Karjat, Maharashtra is famous for its scenic beauty, including waterfalls, caves, and temples.</h4>
+                </div>
+            </div>
+
+            <!-- Mumbai -->
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/background/csmt.jpg" alt="Mumbai" onclick="openModal(this, 'places-detailed/mumbai.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Mumbai</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Mumbai is the capital of Maharashtra. It is famous for Bollywood, street food, beaches, Gateway of India, shopping, nightlife, historical landmarks, etc.</h4>
+                </div>
+            </div>
+
+            <!-- Pune -->
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places/pune shanivarwada.jpg" alt="Pune" onclick="openModal(this, 'places-detailed/pune.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Pune</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Pune is cultural capital of Maharashtra.It is famous for Education, IT hub, cultural heritage, food, Trekking, and festivals</h4>
+                </div>
+            </div>
+
+            <!-- nashik -->
+
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places/nashik trimbkeshwar.jpg" alt="Nashik" onclick="openModal(this, 'places-detailed/nashik.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Nashik</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Nashik is famous for Kumbh Mela, Temples, River Godavari, Grapes and Fruits, and Industrial hub, Education Institutions, Natural Beauty,etc</h4>
+                </div>
+            </div>
+
+            <!-- Ajanta/Ellora -->
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/background/ajanta-bg.jpg" alt="Ajanta and ellora caves" onclick="openModal(this, 'places-detailed/ajanta.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Ajanta and Ellora Caves</h2>
+                </div>
+                <div class="places-des">
+                    <h4>These are ancient rock-cut caves which is located in Chhatrapati Sambhaji Nagar which is part of UNESCO world heritage sites.</h4>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <img id="expandedImg" src="" alt="">
+                    <div id="modalDetails">
+                        <h2>Ajanta and ellora caves</h2>
+                        <p>More details about Ajanta and Ellora caves</p>
+                        <button onclick="bookNow()">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places-gallery/chhatrapati sambhaji nagar/grishneshwar temple.jpg" alt="chhatrapati-sambhaji-nagar" onclick="openModal(this, 'places-detailed/chhatrapatisambhajinagar.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Chhatrapati sambhaji Nagar </h2>
+                </div>
+                <div class="places-des">
+                    <h4>Chhatrapati Sambhaji Nagar is famous for its historical monuments, including caves, temples, and lakes.  </h4>
+                </div>
+            </div>
+
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places/mahabaleshwar.jpg" alt="Mahabaleshwar" onclick="openModal(this, 'places-detailed/mahabaleshwar.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Mahabaleshwar</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Mahabaleshwar is a hill station famous for its natural beauty, strawberry farms,  waterfalls, Trekking, Temples, Colonial architecture.</h4>
+                </div>
+            </div>
+
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places/lonavala.jpg" alt="Lonavala" onclick="openModal(this, 'places-detailed/lonavala.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Lonavala/Khandala</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Lonavala and Khandala are a perfect combination of natural beauty, adventure and relaxation.</h4>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- hidden places -->
+
+        <div class="places1" id="additional-places" style="display: none;">
+
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places/shirdi.jpg" alt="shirdi" onclick="openModal(this, 'places-detailed/shirdi.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Shirdi</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Shirdi is a sacred town in maharashtra famous for being the home of revered saint, Sai Baba.</h4>
+                </div>
+            </div>
+
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places-gallery/raigad/raigad main entrance.jpg" alt="" onclick="openModal(this, 'places-detailed/Raigad.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Raigad Fort</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Raigad fort is located in the district Raigad. Raigad is famous for its historical places, beaches, landscapes, and temples. </h4>
+                </div>
+            </div>
+
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places-gallery/kolhapur/bg.jpg" alt="" onclick="openModal(this, 'places-detailed/kolhapur.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Kolhapur</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Kolhapur is famous for its art, handicrafts, and food.  </h4>
+                </div>
+            </div>
+
+            <div class="city">
+                <div class="places-img">
+                    <img src="img/places-gallery/ratnagiri/background.jpg" alt="" onclick="openModal(this, 'places-detailed/ratnagiri.html')">
+                </div>
+                <div class="places-name">
+                    <h2>Ratnagiri</h2>
+                </div>
+                <div class="places-des">
+                    <h4>Ratnagiri is famous for its beaches, forts, and cultural significance. </h4>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="viewall">
+            <button onclick="togglePlaces()">View all Places</button>
+        </div>
+    </div>
+
+    <script>
+        function togglePlaces() {
+            var additionalPlaces = document.getElementById("additional-places");
+            if (additionalPlaces.style.display === "none" || additionalPlaces.style.display === "") {
+                additionalPlaces.style.display = "flex";
+            } else {
+                additionalPlaces.style.display = "none";
+            }
+        }
+    </script>
+    <!-- UNESCO sites in maharashtra -->
+
+    <div class="places-head">
+        <h1>Travel To UNESCO World Heritage sites in Maharashtra..</h1>
+    </div>
+    <div class="places-sec">
+        <div class="places2">
+
+            <div class="city2">
+                <div class="places-img2">
+                    <img src="img/places-gallery/ajanta/ajanta 2.jpg" alt="" onclick="openModal(this, 'places-detailed/ajanta.html')">
+                </div>
+                <div class="places-name2">
+                    <h3>Ajanta Caves</h3>
+                </div>
+                
+            </div>
+
+            <div class="city2">
+                <div class="places-img2">
+                    <img src="img/background/ajanta-bg.jpg" alt="" onclick="openModal(this, 'places-detailed/ajanta.html')">
+                </div>
+                <div class="places-name2">
+                    <h3>Ellora caves</h3>
+                </div>
+            </div>
+
+            <div class="city2">
+                <div class="places-img2">
+                    <img src="img/places/elephanta.jpg" alt="" onclick="openModal(this, 'places-detailed/mumbai.html')">
+                </div>
+                <div class="places-name2">
+                    <h3>Elephanta caves</h3>
+                </div>
+            </div>
+
+            <div class="city2">
+                <div class="places-img2">
+                    <img src="img/places/malshej.jpeg" alt="" onclick="openModal(this, 'blogs/westernghats.html')">
+                </div>
+                <div class="places-name2">
+                    <h3>Western Ghats</h3>
+                </div>
+            </div>
+
+            <div class="city2">
+                <div class="places-img2">
+                    <img src="img/background/csmt.jpg" alt="" onclick="openModal(this, 'places-detailed/mumbai.html')">
+                </div>
+                <div class="places-name2">
+                    <h3>Chhatrapati Shivaji Maharaj Terminus</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blogs Section -->
+    <div class="places-head" id="blogs-sec">
+        <h1>Latest Travel Blogs</h1>
+    </div>
+    <div class="blogs-sec">
+        <div class="blog">
+            <div class="blog-img">
+                <img src="img/places/malshej.jpeg" alt="Blog 1" onclick="openModal(this)">
+            </div>
+            <div class="blog-title">
+                <h2>Exploring the Western Ghats</h2>
+            </div>
+            <div class="blog-des">
+                <p>Discover the lush greenery, waterfalls, and wildlife of the Western Ghats, one of the most biodiverse regions in the world.</p>
+            </div>
+            <div class="blog-read-more">
+                <a href="~/blogs/westernghats.html">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog">
+            <div class="blog-img">
+                <img src="img/background/csmt.jpg" alt="Blog 2" onclick="openModal(this)">
+            </div>
+            <div class="blog-title">
+                <h2>Street Food Tour in Mumbai</h2>
+            </div>
+            <div class="blog-des">
+                <p>Join us on a culinary journey through Mumbai's bustling streets, tasting the best vada pav, pav bhaji, and more.</p>
+            </div>
+            <div class="blog-read-more">
+                <a href="~/blogs/mumbaifood.html">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog">
+            <div class="blog-img">
+                <img src="img/places/shaniwar wada.jpg" alt="Blog 3" onclick="openModal(this)">
+            </div>
+            <div class="blog-title">
+                <h2>Pune: The Cultural Capital</h2>
+            </div>
+            <div class="blog-des">
+                <p>Explore Pune's rich history, vibrant festivals, and iconic landmarks like Shaniwar Wada and Aga Khan Palace.</p>
+            </div>
+            <div class="blog-read-more">
+                <a href="~/blogs/puneculture.html">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog">
+            <div class="blog-img">
+                <img src="img/places-gallery/lonavala/background.jpg" alt="Blog 4" onclick="openModal(this)">
+            </div>
+            <div class="blog-title">
+                <h2>Adventure in Lonavala</h2>
+            </div>
+            <div class="blog-des">
+                <p>From trekking to paragliding, Lonavala offers a perfect blend of adventure and natural beauty.</p>
+            </div>
+            <div class="blog-read-more">
+                <a href="~/blogs/lonavlaadventure.html">Read More</a>
+            </div>
+        </div>
+    </div>
+
+

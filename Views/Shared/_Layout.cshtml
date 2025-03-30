@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/users/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .popup label {
+                display: block;
+                margin-top: 10px;
+            }
+
+            .popup input {
+                width: 100%;
+                padding: 8px;
+                margin-top: 5px;
+            }
+
+            .popup button {
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #0066ff;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+    </style>
+
+</head>
+
+<body>
+    <!-- navigation and intro -->
+   <div class="navbar">
+        <ul>
+            <li><a>@Html.ActionLink("HOME", "Index", "Home")</a></li>
+            <li><a>@Html.ActionLink("ABOUT", "About", "Home")</a></li>
+            <li>
+                <a href="@Url.Action("Index", "Home")#places-sec">EXPLORE</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Home")#blogs-sec">BLOGS</a>
+            </li>
+            <li>
+                <a>
+                    @Html.ActionLink("BOOKINGS!", "Booking", "Home", new { area = "" }, null)
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Login Popup -->
+    <div id="loginPopup" class="@((Context.Session.GetString("UserEmail") != null) ? "hidden" : "")">
+        <h2>Login</h2>
+        <form method="post" action="/Home/Login">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <p>Don't have an account? <a onclick="showRegisterPopup()" id="registerLink">Register here</a></p>
+    </div>
+
+
+   
+
+    @* register popup *@
+
+
+    <!-- Register Popup -->
+    <div id="registerPopup" class="popup-container" style="display:none;">
+        <div class="popup">
+            <h2>Register</h2>
+            <form method="post" action="/Home/Register">
+                <label for="FirstName">First Name:</label>
+                <input type="text" id="FirstName" name="FirstName" required />
+
+                <label for="LastName">Last Name:</label>
+                <input type="text" id="LastName" name="LastName" required />
+
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" name="Email" required />
+
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="Password" required />
+
+                <button type="submit">Register</button>
+
+                <p>Already have an account? <a href="#" onclick="showLoginPopup()">Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <script>
+        function showRegisterPopup() {
+            document.getElementById('registerPopup').style.display = 'flex';
+        }
+
+        function showLoginPopup() {
+            document.getElementById('registerPopup').style.display = 'none';
+            document.getElementById('loginPopup').style.display = 'flex';
+        }
+    </script>
+
+    <!-- Main Content (Blur if not logged in) -->
+    <div id="blur-content" class="@((Context.Session.GetString("UserEmail") != null) ? "unblur" : "")">
+        @RenderBody() <!-- This will load your Index.cshtml content -->
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About</a></li>
+                    <li><a href="@Url.Action("Index", "Home")#places-sec">Explore</a></li>
+                    <li><a href="@Url.Action("Index", "Home")#blogs-sec">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><img src="~/img/social/facebooklogo-removebg-preview.png" alt="Facebook"></a>
+                    <a href="https://twitter.com" target="_blank"><img src="~/img/social/linkedinlogo-removebg-preview.png" alt="Twitter"></a>
+                    <a href="https://instagram.com" target="_blank"><img src="~/img/social/instagramlogo-removebg-preview.png" alt="Instagram"></a>
+                    <a href="https://youtube.com" target="_blank"><img src="~/img/social/ytlogo-removebg-preview.png" alt="YouTube"></a>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-section">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form class="newsletter-form" method="post" action="/Home/SaveEmail">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Travel Maharashtra. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+                function openModal(img, url) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("expandedImg");
+            var modalDetails = document.getElementById("modalDetails");
+
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            modalDetails.innerHTML = `
+                <h2>${img.alt}</h2>
+                <p>More details about ${img.alt}...</p>
+                <button onclick="window.location.href='${url}'">Read More</button>
+            `;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>673a433e-adb8-451c-912e-427dd84d78c3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\Booking.cshtml" />
+    <None Include="wwwroot\places-detailed\ajanta.html" />
+    <None Include="wwwroot\places-detailed\chhatrapatisambhajinagar.html" />
+    <None Include="wwwroot\places-detailed\karjat.html" />
+    <None Include="wwwroot\places-detailed\kolhapur.html" />
+    <None Include="wwwroot\places-detailed\lonavala.html" />
+    <None Include="wwwroot\places-detailed\mahabaleshwar.html" />
+    <None Include="wwwroot\places-detailed\mumbai.html" />
+    <None Include="wwwroot\places-detailed\nashik.html" />
+    <None Include="wwwroot\places-detailed\pune.html" />
+    <None Include="wwwroot\places-detailed\raigad.html" />
+    <None Include="wwwroot\places-detailed\ratnagiri.html" />
+    <None Include="wwwroot\places-detailed\shirdi.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+  </ItemGroup>
+
+</Project>
